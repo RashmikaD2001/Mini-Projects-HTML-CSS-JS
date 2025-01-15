@@ -1,0 +1,98 @@
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Arvo', serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #000; /* Black background */
+    color: #fff;      /* White text for visibility */
+    overflow: hidden; /* Prevent scrolling */
+}
+
+/* Heading Styling */
+.heading {
+    margin-bottom: 20px; /* Add some spacing below heading */
+    text-align: center;  /* Center the text */
+    font-size: 2rem;     /* Adjust font size */
+}
+
+/* Clock Container */
+.clock {
+    width: 450px;
+    height: 450px;
+    background-image: url(image/clock.png); /* Add your clock face image */
+    background-size: cover; /* Ensure image covers the container */
+    background-position: center; /* Center the image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Needed for absolute positioning of child elements */
+}
+
+/* Center Dot of Clock */
+.clock::before {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    border-radius: 50%;
+    z-index: 9999;
+}
+
+/* Clock Hands */
+.clock .hour, .clock .min, .clock .sec {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hr, .mn, .sc {
+    position: absolute;
+    transform-origin: bottom;
+    transition: transform 0.1s ease-in-out;
+}
+
+.hr::before, .mn::before, .sc::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    transform-origin: bottom;
+    border-radius: 6px 6px 0 0;
+}
+
+/* Hour Hand */
+.hr::before {
+    width: 6px;
+    height: 80px;
+    background: #494c97;
+}
+
+/* Minute Hand */
+.mn::before {
+    width: 4px;
+    height: 90px;
+    background: #feff00;
+}
+
+/* Second Hand */
+.sc::before {
+    width: 2px;
+    height: 150px;
+    background: #fff;
+}

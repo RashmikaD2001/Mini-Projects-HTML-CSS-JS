@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Location Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        #map {
+            width: 80%;
+            max-width: 700px;
+            height: 400px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        #status {
+            margin-top: 15px;
+            font-size: 16px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="map">
+        <p style="text-align: center; padding-top: 50px;">Loading map...</p>
+    </div>
+    <div id="status">Waiting for location updates...</div>
+
+    <script>
+        const mapElement = document.getElementById('map');
+        const statusElement = document.getElementById('status');
+        
+        if ('geolocation' in navigator) {
+            navigator.geolocation.watchPosition(
+                position => {
+                    const { latitude, longitude } = position.coords;
+                    
+                    // Update map
+                    mapElement.innerHTML = `
+                        <iframe
+                            width="100%"
+                            height="100%"
+                            src="https://maps.google.com/maps?q=${latitude},${longitude}&hl=en&z=14&output=embed"
+                            frameborder="0"
+                            scrolling="no"
+                            allowfullscreen>
+                        </iframe>
+                    `;
+                    
+                    // Update status
+                    statusElement.textContent = `Current Location: Latitude ${latitude.toFixed(4)}, Longitude ${longitude.toFixed(4)}`;
+                },
+                error => {
+                    statusElement.textContent = `Error retrieving location: ${error.message}`;
+                },
+                {
+                    enableHighAccuracy: true,
+                    maximumAge: 0
+                }
+            );
+        } else {
+            statusElement.textContent = "Geolocation is not supported by your browser.";
+        }
+    </script>
+
+</body>
+</html>

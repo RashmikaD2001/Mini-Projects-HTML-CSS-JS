@@ -1,0 +1,40 @@
+*{
+    /* space between content and border */
+    padding: 0;
+    /* space around the element */
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body{
+    background-color: #0093E9;
+    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+}
+
+.card{
+    width: 700px;
+    background: #ccc;
+    padding: 20px;
+    margin: 20px;
+    font-family: sans-serif;
+    line-height: 28px;
+}
+
+/* Scrollbar */
+/* ::-webkit-scrollbar */
+::-moz-scrollbar{
+    background-color: transparent;
+    width: 7px;
+    border: 2px dashed;
+}
+
+/* ::-webkit-scrollbar-thumb */
+::-moz-scrollbar-thumb{
+    background-color: #FFE53B;
+    background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);
+    border-radius: 100px;
+}
+
+
+
